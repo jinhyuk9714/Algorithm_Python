@@ -1,10 +1,14 @@
-from itertools import permutations
-
 n, m = map(int, input().split())
-data = list(range(1, n + 1))
+path = []
 
-result = list(permutations(data, m))
-result.sort()
+def dfs(start):
+    if len(path) == m:
+        print(*path)
+        return
 
-for i in result:
-    print(*i)
+    for i in range(start, n + 1):
+        path.append(i)
+        dfs(i)
+        path.pop()
+
+dfs(1)
